@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/health")
 public class HealthControllerImpl implements HealthController {
 
+    @GetMapping(path = "/check")
     public ResponseEntity<String> check() {
         return ResponseEntity.status(HttpStatus.OK).body("Everything sees fine");
     }
