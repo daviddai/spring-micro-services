@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableDiscoveryClient
 @EnableEurekaClient
 @SpringBootApplication
-@ComponentScan({"com.weather.service.impl.controller"})
+@ComponentScan("com.weather.service.impl")
 public class AppEntry {
 
     public static void main(String[] args) {
