@@ -1,0 +1,33 @@
+version : '2'
+services:
+  weather-service:
+    container_name: weather-service
+    tty: true
+    build: .
+    ports:
+      - "8081:8081"
+    networks:
+      - net-spring-micro-services
+    volumes:
+      - ../target/:/vol/development/
+#    depends_on:
+#      - mysqldbserver
+
+#  mysqldbserver:
+#    build:
+#      context: .
+#      dockerfile: mysqldb.dockerfile
+#    ports:
+#      - "3306:3306"
+#    networks:
+#      - net-spring-db
+#    environment:
+#      MYSQL_DATABASE: testdb
+#      MYSQL_USER: myuser
+#      MYSQL_PASSWORD: mypassword
+#      MYSQL_ROOT_PASSWORD: myrootpassword
+#    container_name: mysqldbserver
+
+networks:
+  net-spring-micro-services:
+    driver: bridge
