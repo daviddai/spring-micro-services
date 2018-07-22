@@ -13,6 +13,8 @@
         <module>weather-service-impl</module>
         <module>demo-service</module>
         <module>eureka-service</module>
+        <module>user-service-api</module>
+        <module>user-service-impl</module>
     </modules>
 
     <parent>
