@@ -13,6 +13,6 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity<String> userLogin(UserLogin userLogin) {
-        return ResponseEntity.status(HttpStatus.OK).body("mock it");
+        return ResponseEntity.ok().body("{\"succeed\": true}");
     }
 }
