@@ -5,6 +5,7 @@ import com.user.serivce.api.controller.model.UserLogin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserControllerImpl implements UserController {
 
     @Override
-    public ResponseEntity<String> userLogin(UserLogin userLogin) {
-        return ResponseEntity.ok().body("{\"succeed\": true}");
+    public ResponseEntity<String> userLogin(@RequestBody UserLogin userLogin) {
+        if (userLogin.getEmail().equals("dd@mail.com") && userLogin.getPassword().equals("1234")) {
+            return ResponseEntity.ok().body("{\"succeed\": true}");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 }
