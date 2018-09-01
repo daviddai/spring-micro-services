@@ -37,4 +37,53 @@ public class TicketDTO {
     public Collection<TaskDTO> getTaskDTOs() {
         return taskDTOs;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private Long id;
+        private String title;
+        private String description;
+        private String status;
+        Collection<TaskDTO> taskDTOs;
+
+        public Builder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder setTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setDescription(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder setStatus(String status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder setTaskDtos(Collection<TaskDTO> taskDTOs) {
+            this.taskDTOs = taskDTOs;
+            return this;
+        }
+
+        public TicketDTO build() {
+            return new TicketDTO(
+                this.id,
+                this.title,
+                this.description,
+                this.status,
+                this.taskDTOs
+            );
+        }
+
+    }
 }
