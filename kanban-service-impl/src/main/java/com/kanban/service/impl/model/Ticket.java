@@ -1,8 +1,10 @@
-package com.user.service.impl.model;
+package com.kanban.service.impl.model;
 
+import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.TicketDTO;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class Ticket {
 
@@ -40,12 +42,16 @@ public class Ticket {
         return tasks;
     }
 
-    // TODO: need to finish taskdto in kanban service api
-    public TicketDTO toTicketDTO(Ticket ticket) {
+    public TicketDTO toTicketDTO() {
+        Collection<TaskDTO> taskDTOs = this.tasks.stream()
+                                                 .map(Task::toTaskDTO)
+                                                 .collect(Collectors.toList());
+
         return TicketDTO.builder()
                         .setId(this.id)
                         .setTitle(this.title)
                         .setDescription(this.description)
+                        .setTaskDtos(taskDTOs)
                         .setStatus(this.status.getDescription())
                         .build();
     }

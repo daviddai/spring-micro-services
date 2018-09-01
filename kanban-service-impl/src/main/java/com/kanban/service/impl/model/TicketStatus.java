@@ -1,4 +1,4 @@
-package com.user.service.impl.model;
+package com.kanban.service.impl.model;
 
 public enum TicketStatus {
 
