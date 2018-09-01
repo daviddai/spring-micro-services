@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/ticket")
@@ -15,6 +15,6 @@ public interface TicketController {
 
     @GetMapping
     @RequestMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<List<TicketDTO>> getAll();
+    ResponseEntity<Collection<TicketDTO>> getAll();
 
 }
