@@ -17,7 +17,7 @@ public class UserControllerImpl implements UserController {
         if (userLogin.getEmail().equals("dd@mail.com") && userLogin.getPassword().equals("1234")) {
             return ResponseEntity.ok().body("{\"succeed\": true}");
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"message\":\"Incorrect email or password\"}");
         }
     }
 }
