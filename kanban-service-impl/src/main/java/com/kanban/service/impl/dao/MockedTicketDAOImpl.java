@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -20,9 +21,8 @@ public class MockedTicketDAOImpl implements TicketDAO {
         tasks1.add(createMockedTask(1L, "ContactList Example", true));
         tasks1.add(createMockedTask(2L, "Kanban Example", false));
         tasks1.add(createMockedTask(3L, "My Own Experiments", false));
-        tickets.add(createMockedTicket(1l, "Write some code", "I should read the whole book", TicketStatus.READY, tasks1));
-
-
+        tickets.add(createMockedTicket(1L, "Write some code", "Code along with the samples in the book. The complete source can be found at [github](https://github.com/pro-react)", TicketStatus.READY, tasks1));
+        tickets.add(createMockedTicket(2L, "Read the book", "I should read the whole book", TicketStatus.IN_PROGRESS, Collections.emptyList()));
 
         return tickets;
     }
