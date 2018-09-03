@@ -39,4 +39,4 @@ RUN set -x \
 RUN mkdir -p /vol/development/
 VOLUME /vol/development/
 WORKDIR /vol/development/
-CMD ["java", "-jar", "kanban-service-impl-1.0-SNAPSHOT.jar"]
+CMD ["java", "-Xdebug", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=4083", "-jar", "kanban-service-impl-1.0-SNAPSHOT.jar"]

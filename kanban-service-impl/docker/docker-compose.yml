@@ -5,11 +5,12 @@ services:
     tty: true
     build: .
     ports:
-    - "8083:8083"
+      - "8083:8083"
+      - "4083:4083"
     networks:
-    - net-spring-micro-services
+      - net-spring-micro-services
     volumes:
-    - ../target/:/vol/development/
+      - ../target/:/vol/development/
 #    depends_on:
 #      - mysqldbserver
 
