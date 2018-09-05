@@ -1,5 +1,8 @@
 package com.kanban.service.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Collection;
 
 public class TicketDTO {
@@ -10,7 +13,13 @@ public class TicketDTO {
     private String status;
     Collection<TaskDTO> taskDTOs;
 
-    public TicketDTO(Long id, String title, String description, String status, Collection<TaskDTO> taskDTOs) {
+    @JsonCreator
+    public TicketDTO(
+            @JsonProperty("id") Long id,
+            @JsonProperty("title") String title,
+            @JsonProperty("description") String description,
+            @JsonProperty("status") String status,
+            @JsonProperty("tasks") Collection<TaskDTO> taskDTOs) {
         this.id = id;
         this.title = title;
         this.description = description;
