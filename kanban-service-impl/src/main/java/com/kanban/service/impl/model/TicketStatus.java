@@ -2,8 +2,8 @@ package com.kanban.service.impl.model;
 
 public enum TicketStatus {
 
-    READY("ready"),
-    IN_PROGRESS("in_progress"),
+    READY("todo"),
+    IN_PROGRESS("in-progress"),
     FINISHED("finished");
 
     private String description;
