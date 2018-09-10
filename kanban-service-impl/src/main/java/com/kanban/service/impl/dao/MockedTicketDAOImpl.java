@@ -4,6 +4,7 @@ import com.kanban.service.impl.model.Ticket;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Repository
 public class MockedTicketDAOImpl implements TicketDAO {
@@ -13,4 +14,11 @@ public class MockedTicketDAOImpl implements TicketDAO {
         return MockedDatabase.getTickets();
     }
 
+    @Override
+    public Optional<Ticket> findById(long id) {
+        return MockedDatabase.getTickets()
+                             .stream()
+                             .filter(ticket -> ticket.getId() == id)
+                             .findFirst();
+    }
 }

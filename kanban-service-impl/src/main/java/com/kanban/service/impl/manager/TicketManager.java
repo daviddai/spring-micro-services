@@ -18,4 +18,8 @@ public class TicketManager {
         return this.ticketDAO.findAll();
     }
 
+    public Ticket findTicketById(long id) {
+        return this.ticketDAO.findById(id).orElse(null);
+    }
+
 }
