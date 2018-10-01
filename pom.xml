@@ -17,6 +17,7 @@
         <module>user-service-impl</module>
         <module>kanban-service-api</module>
         <module>kanban-service-impl</module>
+        <module>micro-service-common</module>
     </modules>
 
     <parent>
