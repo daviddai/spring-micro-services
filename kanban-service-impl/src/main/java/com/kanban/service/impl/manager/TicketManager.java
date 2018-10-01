@@ -22,4 +22,8 @@ public class TicketManager {
         return this.ticketDAO.findById(id).orElse(null);
     }
 
+    public void updateTicket(Ticket ticket) {
+        this.ticketDAO.update(ticket);
+    }
+
 }

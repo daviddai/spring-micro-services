@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 public class Ticket {
 
-    private Long id;
+    private long id;
     private String title;
     private String description;
     private TicketStatus status;
     private Collection<Task> tasks;
 
-    public Ticket(Long id, String title, String description, TicketStatus status, Collection<Task> tasks) {
+    public Ticket(long id, String title, String description, TicketStatus status, Collection<Task> tasks) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -22,7 +22,7 @@ public class Ticket {
         this.tasks = tasks;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -40,6 +40,22 @@ public class Ticket {
 
     public Collection<Task> getTasks() {
         return tasks;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(TicketStatus status) {
+        this.status = status;
+    }
+
+    public void setTasks(Collection<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public TicketDTO toTicketDTO() {

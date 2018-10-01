@@ -21,4 +21,18 @@ public class MockedTicketDAOImpl implements TicketDAO {
                              .filter(ticket -> ticket.getId() == id)
                              .findFirst();
     }
+
+    @Override
+    public void update(Ticket newTicket) {
+        MockedDatabase.getTickets()
+                      .stream()
+                      .filter(ticket -> ticket.getId() == newTicket.getId())
+                      .findFirst()
+                      .map(ticket -> {
+                          ticket.setTitle(newTicket.getTitle());
+                          ticket.setDescription(newTicket.getDescription());
+                          ticket.setStatus(newTicket.getStatus());
+                          return ticket;
+                      });
+    }
 }

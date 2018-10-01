@@ -11,4 +11,6 @@ public interface TicketDAO {
 
     public Optional<Ticket> findById(long id);
 
+    public void update(Ticket ticket);
+
 }
