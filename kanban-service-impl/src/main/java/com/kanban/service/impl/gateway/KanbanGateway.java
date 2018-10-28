@@ -58,7 +58,7 @@ public class KanbanGateway {
             ticketDTO.getId(),
             ticketDTO.getTitle(),
             ticketDTO.getDescription(),
-            TicketStatus.valueOf(ticketDTO.getStatus()),
+            TicketStatus.getTicketStatus(ticketDTO.getStatus()),
             null
         );
     }

@@ -6,6 +6,7 @@ import com.kanban.service.impl.gateway.KanbanGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
@@ -29,7 +30,7 @@ public class TicketControllerImpl implements TicketController {
     }
 
     @Override
-    public ResponseEntity update(TicketDTO ticketDTO) {
+    public ResponseEntity update(@RequestBody TicketDTO ticketDTO) {
         this.kanbanGateway.updateTicketStatus(ticketDTO);
         return ResponseEntity.ok().build();
     }
