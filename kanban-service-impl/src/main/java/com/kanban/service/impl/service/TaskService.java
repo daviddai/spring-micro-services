@@ -1,4 +1,4 @@
-package com.kanban.service.impl.manager;
+package com.kanban.service.impl.service;
 
 import com.kanban.service.impl.dao.TaskDAO;
 import com.kanban.service.impl.model.Task;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskManager {
+public class TaskService {
 
     @Autowired
     private TaskDAO taskDAO;

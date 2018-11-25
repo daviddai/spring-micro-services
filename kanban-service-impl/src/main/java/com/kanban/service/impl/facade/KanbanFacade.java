@@ -1,8 +1,8 @@
-package com.kanban.service.impl.gateway;
+package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TicketDTO;
-import com.kanban.service.impl.manager.TaskManager;
-import com.kanban.service.impl.manager.TicketManager;
+import com.kanban.service.impl.service.TaskService;
+import com.kanban.service.impl.service.TicketService;
 import com.kanban.service.impl.model.Task;
 import com.kanban.service.impl.model.Ticket;
 import com.kanban.service.impl.model.TicketStatus;
@@ -14,16 +14,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class KanbanGateway {
+public class KanbanFacade {
 
     @Autowired
-    private TicketManager ticketManager;
+    private TicketService ticketService;
 
     @Autowired
-    private TaskManager taskManager;
+    private TaskService taskService;
 
     public Collection<TicketDTO> getAllTickets() {
-        Collection<Ticket> tickets = this.ticketManager.getAllTickets();
+        Collection<Ticket> tickets = this.ticketService.getAllTickets();
 
         if (tickets != null && !tickets.isEmpty()) {
             return tickets.stream()
@@ -35,7 +35,7 @@ public class KanbanGateway {
     }
 
     public void toggleTaskStatus(long ticketId, long taskId) {
-        Ticket ticket = ticketManager.findTicketById(ticketId);
+        Ticket ticket = ticketService.findTicketById(ticketId);
 
         if (ticket != null) {
             Optional<Task> newTask = ticket.getTasks()
@@ -45,12 +45,12 @@ public class KanbanGateway {
 
             newTask.ifPresent(task -> task.setDone(!task.isDone()));
 
-            this.taskManager.toggleTaskStatus(ticketId, newTask.get());
+            this.taskService.toggleTaskStatus(ticketId, newTask.get());
         }
     }
 
     public void updateTicketStatus(TicketDTO ticketDTO) {
-        this.ticketManager.updateTicket(this.fromTicketDTO(ticketDTO));
+        this.ticketService.updateTicket(this.fromTicketDTO(ticketDTO));
     }
 
     private Ticket fromTicketDTO(TicketDTO ticketDTO) {

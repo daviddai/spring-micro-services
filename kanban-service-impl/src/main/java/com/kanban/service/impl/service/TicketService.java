@@ -1,4 +1,4 @@
-package com.kanban.service.impl.manager;
+package com.kanban.service.impl.service;
 
 import com.kanban.service.impl.dao.TicketDAO;
 import com.kanban.service.impl.model.Ticket;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 
 @Service
-public class TicketManager {
+public class TicketService {
 
     @Autowired
     private TicketDAO ticketDAO;
