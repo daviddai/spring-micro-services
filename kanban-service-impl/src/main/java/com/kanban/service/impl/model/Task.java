@@ -34,11 +34,9 @@ public class Task {
         this.done = done;
     }
 
+    // todo: this method will be removed before this branch is merged
+    @Deprecated
     public TaskDTO toTaskDTO() {
-        return TaskDTO.builder()
-                      .setId(this.id)
-                      .setName(this.name)
-                      .done(this.done)
-                      .build();
+        return null;
     }
 }

@@ -58,6 +58,8 @@ public class Ticket {
         this.tasks = tasks;
     }
 
+    // todo: this method will be removed before this branch is merged
+    @Deprecated
     public TicketDTO toTicketDTO() {
         Collection<TaskDTO> taskDTOs = this.tasks.stream()
                                                  .map(Task::toTaskDTO)

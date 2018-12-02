@@ -2,17 +2,17 @@ package com.kanban.service.api.model;
 
 public class TaskDTO {
 
-    private Long id;
+    private long id;
     private String name;
     private boolean done;
 
-    public TaskDTO(Long id, String name, boolean done) {
+    public TaskDTO(long id, String name, boolean done) {
         this.id = id;
         this.name = name;
         this.done = done;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -29,11 +29,11 @@ public class TaskDTO {
     }
 
     public static class Builder {
-        private Long id;
+        private long id;
         private String name;
         private boolean done;
 
-        public Builder setId(Long id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }

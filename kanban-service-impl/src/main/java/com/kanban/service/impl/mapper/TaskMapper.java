@@ -2,13 +2,17 @@ package com.kanban.service.impl.mapper;
 
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.impl.model.Task;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface TaskMapper {
 
-    Task taskDTO2Task(TaskDTO taskDTO);
+    TaskMapper INSTANCE = Mappers.getMapper(TaskMapper.class);
 
-    TaskDTO task2TaskDTO(Task task);
+    Task mapTaskDTO(TaskDTO taskDTO);
+
+    TaskDTO mapTask(Task task);
 
 }
