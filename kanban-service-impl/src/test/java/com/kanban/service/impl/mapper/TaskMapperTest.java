@@ -8,7 +8,7 @@ import org.junit.Test;
 public class TaskMapperTest {
 
     @Test
-    public void testMappingFromTaskToTaskDTO() {
+    public void testMapTask() {
         Task task = new Task(1, "task", true);
         TaskDTO taskDTO = TaskMapper.INSTANCE.mapTask(task);
         Assert.assertEquals(task.getId(), taskDTO.getId());
@@ -17,12 +17,12 @@ public class TaskMapperTest {
     }
 
     @Test
-    public void testMappingFromTaskDTOtoTask() {
+    public void testMapTaskDTO() {
         TaskDTO taskDTO = new TaskDTO(1, "taskDTO", true);
         Task task = TaskMapper.INSTANCE.mapTaskDTO(taskDTO);
-        Assert.assertEquals(taskDTO.getId(), task.getId());
-        Assert.assertEquals(taskDTO.getName(), task.getName());
-        Assert.assertEquals(taskDTO.isDone(), task.isDone());
+        Assert.assertEquals("Task id should be " + taskDTO.getId(), taskDTO.getId(), task.getId());
+        Assert.assertEquals("Task name should be " + taskDTO.getName(), taskDTO.getName(), task.getName());
+        Assert.assertEquals("Task status should be " + taskDTO.isDone(), taskDTO.isDone(), task.isDone());
     }
 
 }

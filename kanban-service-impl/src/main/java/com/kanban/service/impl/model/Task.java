@@ -8,10 +8,17 @@ public class Task {
     private String name;
     private boolean done;
 
+    public Task() {}
+
     public Task(long id, String name, boolean done) {
         this.id = id;
         this.name = name;
         this.done = done;
+    }
+
+    // todo: find a better solution as ideally once task is created, the id should be IMMUTABLE
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getId() {
