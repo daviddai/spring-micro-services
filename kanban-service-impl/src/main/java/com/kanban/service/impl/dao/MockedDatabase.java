@@ -22,7 +22,7 @@ public class MockedDatabase {
         tasks.add(createMockedTask(1L, "ContactList Example", true));
         tasks.add(createMockedTask(2L, "Kanban Example", false));
         tasks.add(createMockedTask(3L, "My Own Experiments", false));
-        tickets.add(createMockedTicket(1L, "Write some code", "Code along with the samples in the book. The complete source can be found at [github](https://github.com/pro-react)", TicketStatus.READY, tasks));
+        tickets.add(createMockedTicket(1L, "Write some code", "Code along with the samples in the book. The complete source can be found at [github](https://github.com/pro-react)", TicketStatus.TODO, tasks));
         tickets.add(createMockedTicket(2L, "Read the book", "I should read the whole book", TicketStatus.IN_PROGRESS, Collections.emptyList()));
         return tickets;
     }

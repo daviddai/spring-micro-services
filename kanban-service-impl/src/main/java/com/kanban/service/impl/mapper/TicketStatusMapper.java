@@ -1,5 +1,6 @@
 package com.kanban.service.impl.mapper;
 
+import com.kanban.service.impl.model.TicketStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -7,5 +8,7 @@ import org.mapstruct.factory.Mappers;
 public interface TicketStatusMapper {
 
     TicketStatusMapper INSTANCE = Mappers.getMapper(TicketStatusMapper.class);
+
+    TicketStatus mapString(String status);
 
 }

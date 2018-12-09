@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum TicketStatus {
 
-    READY("todo"),
+    TODO("todo"),
     IN_PROGRESS("in-progress"),
     FINISHED("finished");
 
