@@ -18,7 +18,11 @@ public class TaskMapperTest {
 
     @Test
     public void testMappingFromTaskDTOtoTask() {
-
+        TaskDTO taskDTO = new TaskDTO(1, "taskDTO", true);
+        Task task = TaskMapper.INSTANCE.mapTaskDTO(taskDTO);
+        Assert.assertEquals(taskDTO.getId(), task.getId());
+        Assert.assertEquals(taskDTO.getName(), task.getName());
+        Assert.assertEquals(taskDTO.isDone(), task.isDone());
     }
 
 }
