@@ -7,4 +7,5 @@ import org.mapstruct.factory.Mappers;
 public interface TicketStatusMapper {
 
     TicketStatusMapper INSTANCE = Mappers.getMapper(TicketStatusMapper.class);
+
 }
