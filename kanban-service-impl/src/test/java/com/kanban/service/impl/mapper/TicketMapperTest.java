@@ -9,18 +9,19 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class TicketMapperTest {
 
     @Test
     public void testMapTicketDTO() {
-        List<TaskDTO> taskDTOs = Arrays.asList(
+        List<TaskDTO> taskDTOs = Collections.singletonList(
                 TaskDTO.builder()
-                       .setId(2)
-                       .setName("Task")
-                       .done(true)
-                       .build()
+                        .setId(2)
+                        .setName("Task")
+                        .done(true)
+                        .build()
         );
 
         TicketDTO ticketDTO = TicketDTO.builder()
