@@ -14,6 +14,4 @@ public interface TicketMapper {
 
     TicketDTO mapTicket(Ticket ticket);
 
-
-
 }
