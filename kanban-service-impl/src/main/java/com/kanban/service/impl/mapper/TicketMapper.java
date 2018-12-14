@@ -14,6 +14,7 @@ public interface TicketMapper {
     @Mapping(source = "taskDTOs", target = "tasks")
     Ticket mapTicketDTO(TicketDTO ticketDTO);
 
+    @Mapping(source = "tasks", target = "taskDTOs")
     TicketDTO mapTicket(Ticket ticket);
 
 }
