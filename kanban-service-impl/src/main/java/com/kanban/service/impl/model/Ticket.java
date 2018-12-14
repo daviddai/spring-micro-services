@@ -14,6 +14,8 @@ public class Ticket {
     private TicketStatus status;
     private Collection<Task> tasks;
 
+    public Ticket() {}
+
     public Ticket(long id, String title, String description, TicketStatus status, Collection<Task> tasks) {
         this.id = id;
         this.title = title;
@@ -26,32 +28,36 @@ public class Ticket {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public TicketStatus getStatus() {
-        return status;
-    }
-
-    public Collection<Task> getTasks() {
-        return tasks;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public TicketStatus getStatus() {
+        return status;
+    }
+
     public void setStatus(TicketStatus status) {
         this.status = status;
+    }
+
+    public Collection<Task> getTasks() {
+        return tasks;
     }
 
     public void setTasks(Collection<Task> tasks) {

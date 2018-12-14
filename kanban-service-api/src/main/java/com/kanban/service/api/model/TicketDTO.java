@@ -7,15 +7,15 @@ import java.util.Collection;
 
 public class TicketDTO {
 
-    private Long id;
+    private long id;
     private String title;
     private String description;
     private String status;
-    Collection<TaskDTO> taskDTOs;
+    private Collection<TaskDTO> taskDTOs;
 
     @JsonCreator
     public TicketDTO(
-            @JsonProperty("id") Long id,
+            @JsonProperty("id") long id,
             @JsonProperty("title") String title,
             @JsonProperty("description") String description,
             @JsonProperty("status") String status,
@@ -27,7 +27,7 @@ public class TicketDTO {
         this.taskDTOs = taskDTOs;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -53,13 +53,13 @@ public class TicketDTO {
 
     public static class Builder {
 
-        private Long id;
+        private long id;
         private String title;
         private String description;
         private String status;
         Collection<TaskDTO> taskDTOs;
 
-        public Builder setId(Long id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }
