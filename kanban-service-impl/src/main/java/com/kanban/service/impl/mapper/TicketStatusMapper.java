@@ -5,10 +5,20 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper
-public interface TicketStatusMapper {
+public abstract class TicketStatusMapper {
 
-    TicketStatusMapper INSTANCE = Mappers.getMapper(TicketStatusMapper.class);
+    public static TicketStatusMapper INSTANCE = Mappers.getMapper(TicketStatusMapper.class);
 
-    TicketStatus mapString(String status);
+    public TicketStatus mapString(String status) {
+        return TicketStatus.getTicketStatus(status);
+    }
+
+    public String mapEnum(TicketStatus ticketStatus) {
+        if (ticketStatus == null) {
+            return null;
+        } else {
+            return ticketStatus.getDescription();
+        }
+    }
 
 }

@@ -5,7 +5,7 @@ import com.kanban.service.impl.model.Ticket;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper(uses = {TaskMapper.class, TicketStatusMapper.class})
+//@Mapper(uses = {TaskMapper.class, TicketStatusMapper.class})
 public interface TicketMapper {
 
     TicketMapper INSTANCE = Mappers.getMapper(TicketMapper.class);
