@@ -1,11 +1,12 @@
 package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TicketDTO;
-import com.kanban.service.impl.service.TaskService;
-import com.kanban.service.impl.service.TicketService;
+import com.kanban.service.impl.mapper.TicketMapper;
 import com.kanban.service.impl.model.Task;
 import com.kanban.service.impl.model.Ticket;
 import com.kanban.service.impl.model.TicketStatus;
+import com.kanban.service.impl.service.TaskService;
+import com.kanban.service.impl.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class KanbanFacade {
 
         if (tickets != null && !tickets.isEmpty()) {
             return tickets.stream()
-                          .map(Ticket::toTicketDTO)
+                          .map(TicketMapper.INSTANCE::mapTicket)
                           .collect(Collectors.toList());
         } else {
             return null;

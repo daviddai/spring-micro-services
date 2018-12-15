@@ -1,7 +1,5 @@
 package com.kanban.service.impl.model;
 
-import com.kanban.service.api.model.TaskDTO;
-
 public class Task {
 
     private long id;
@@ -39,11 +37,5 @@ public class Task {
 
     public void setDone(boolean done) {
         this.done = done;
-    }
-
-    // todo: this method will be removed before this branch is merged
-    @Deprecated
-    public TaskDTO toTaskDTO() {
-        return null;
     }
 }

@@ -1,10 +1,6 @@
 package com.kanban.service.impl.model;
 
-import com.kanban.service.api.model.TaskDTO;
-import com.kanban.service.api.model.TicketDTO;
-
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 public class Ticket {
 
@@ -62,21 +58,5 @@ public class Ticket {
 
     public void setTasks(Collection<Task> tasks) {
         this.tasks = tasks;
-    }
-
-    // todo: this method will be removed before this branch is merged
-    @Deprecated
-    public TicketDTO toTicketDTO() {
-        Collection<TaskDTO> taskDTOs = this.tasks.stream()
-                                                 .map(Task::toTaskDTO)
-                                                 .collect(Collectors.toList());
-
-        return TicketDTO.builder()
-                        .setId(this.id)
-                        .setTitle(this.title)
-                        .setDescription(this.description)
-                        .setTaskDTOs(taskDTOs)
-                        .setStatus(this.status.getDescription())
-                        .build();
     }
 }
