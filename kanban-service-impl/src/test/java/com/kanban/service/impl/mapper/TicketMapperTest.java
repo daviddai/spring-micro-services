@@ -28,7 +28,7 @@ public class TicketMapperTest {
                                        .setId(1)
                                        .setDescription("Ticket Description")
                                        .setStatus("todo")
-                                       .setTaskDtos(taskDTOs)
+                                       .setTaskDTOs(taskDTOs)
                                        .build();
 
         Ticket ticket = TicketMapper.INSTANCE.mapTicketDTO(ticketDTO);

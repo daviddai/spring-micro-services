@@ -75,7 +75,7 @@ public class Ticket {
                         .setId(this.id)
                         .setTitle(this.title)
                         .setDescription(this.description)
-                        .setTaskDtos(taskDTOs)
+                        .setTaskDTOs(taskDTOs)
                         .setStatus(this.status.getDescription())
                         .build();
     }

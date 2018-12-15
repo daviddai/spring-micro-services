@@ -79,7 +79,7 @@ public class TicketDTO {
             return this;
         }
 
-        public Builder setTaskDtos(Collection<TaskDTO> taskDTOs) {
+        public Builder setTaskDTOs(Collection<TaskDTO> taskDTOs) {
             this.taskDTOs = taskDTOs;
             return this;
         }
