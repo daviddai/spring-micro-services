@@ -9,8 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>weather-service-api</module>
-        <module>weather-service-impl</module>
         <module>demo-service</module>
         <module>eureka-service</module>
         <module>user-service-api</module>
