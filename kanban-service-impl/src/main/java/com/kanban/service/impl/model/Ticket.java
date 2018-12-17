@@ -1,5 +1,6 @@
 package com.kanban.service.impl.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Ticket {
@@ -10,7 +11,9 @@ public class Ticket {
     private TicketStatus status;
     private Collection<Task> tasks;
 
-    public Ticket() {}
+    public Ticket() {
+        this.tasks = new ArrayList<>();
+    }
 
     public Ticket(long id, String title, String description, TicketStatus status, Collection<Task> tasks) {
         this.id = id;
