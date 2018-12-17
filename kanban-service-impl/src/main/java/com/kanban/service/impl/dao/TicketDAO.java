@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface TicketDAO {
 
+    public void add(Ticket ticket);
+
     public Collection<Ticket> findAll();
 
     public Optional<Ticket> findById(long id);

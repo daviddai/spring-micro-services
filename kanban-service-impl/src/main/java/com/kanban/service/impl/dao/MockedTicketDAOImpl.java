@@ -10,6 +10,11 @@ import java.util.Optional;
 public class MockedTicketDAOImpl implements TicketDAO {
 
     @Override
+    public void add(Ticket ticket) {
+
+    }
+
+    @Override
     public Collection<Ticket> findAll() {
         return MockedDatabase.getTickets();
     }
