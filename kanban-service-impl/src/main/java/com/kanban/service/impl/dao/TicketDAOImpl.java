@@ -8,6 +8,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +27,7 @@ public class TicketDAOImpl implements TicketDAO {
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
+    private SimpleJdbcInsert simpleJdbcInsert;
 
     final private static String FIND_ALL_TICKETS = "SELECT " +
                                                    "ti.id as ticket_id, ti.title as ticket_title, ti.description as ticket_description, ti.status as ticket_status " +
@@ -35,14 +38,23 @@ public class TicketDAOImpl implements TicketDAO {
 
     final private static String FIND_TICKET_BY_ID = FIND_ALL_TICKETS + " WHERE ti.id = :ticket_id";
 
+    final private static String UPDATE_TICKET_BY_ID = "UPDATE ticket " +
+                                                      "SET title = :title, description = :description, status = :status " +
+                                                      "WHERE id = :id";
+
     @PostConstruct
     private void postConstruct() {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
     }
 
     @Override
     public void add(Ticket ticket) {
-
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("title", ticket.getTitle());
+        parameters.put("description", ticket.getDescription());
+        parameters.put("status", ticket.getStatus().getDescription());
+        simpleJdbcInsert.execute(parameters);
     }
 
     @Override
@@ -102,7 +114,11 @@ public class TicketDAOImpl implements TicketDAO {
 
     @Override
     public void update(Ticket ticket) {
-
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("title", ticket.getTitle())
+                                                                           .addValue("description", ticket.getDescription())
+                                                                           .addValue("status", ticket.getStatus().getDescription())
+                                                                           .addValue("id", ticket.getId());
+        jdbcTemplate.update(UPDATE_TICKET_BY_ID, sqlParameterSource);
     }
 
     @VisibleForTesting
