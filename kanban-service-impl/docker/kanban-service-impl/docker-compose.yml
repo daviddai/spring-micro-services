@@ -3,7 +3,7 @@ services:
   kanban-service:
     container_name: kanban-service
     tty: true
-    build: .
+    build: ..
     ports:
       - "8083:8083"
       - "4083:4083"
