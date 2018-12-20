@@ -7,3 +7,5 @@ services:
     environment:
       - MYSQL_ROOT_HOST=%
       - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
