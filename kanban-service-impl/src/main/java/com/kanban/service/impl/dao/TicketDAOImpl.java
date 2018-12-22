@@ -14,12 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class TicketDAOImpl implements TicketDAO {
@@ -30,7 +25,7 @@ public class TicketDAOImpl implements TicketDAO {
     private SimpleJdbcInsert simpleJdbcInsert;
 
     final private static String FIND_ALL_TICKETS = "SELECT " +
-                                                   "ti.id as ticket_id, ti.title as ticket_title, ti.description as ticket_description, ti.status as ticket_status " +
+                                                   "ti.id as ticket_id, ti.title as ticket_title, ti.description as ticket_description, ti.status as ticket_status, " +
                                                    "ta.id as task_id, ta.name as task_name, ta.done as task_status" +
                                                    "FROM ticket ti" +
                                                    "LEFT JOIN task ta " +
