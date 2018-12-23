@@ -57,7 +57,7 @@ public class TicketDAOImpl implements TicketDAO {
                 String ticketDescription = resultSet.getString("description");
                 String ticketStatus = resultSet.getString("status");
 
-                tickets.add(new Ticket(ticketId, ticketTitle, ticketDescription, TicketStatus.valueOf(ticketStatus), new ArrayList<>()));
+                tickets.add(new Ticket(ticketId, ticketTitle, ticketDescription, TicketStatus.getTicketStatus(ticketStatus), new ArrayList<>()));
             }
 
             return tickets;
