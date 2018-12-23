@@ -15,7 +15,8 @@ public class SpringJdbcConfig {
     public DataSource mysqlDatasource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/kanban_board");
+        // todo: find to way to make this app work with mysql which runs in another docker container without specifying ip address
+        dataSource.setUrl("jdbc:mysql://192.168.1.2:3306/kanban_board");
         dataSource.setUsername("root");
         dataSource.setPassword("1234");
         return dataSource;

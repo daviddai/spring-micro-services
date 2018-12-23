@@ -6,6 +6,7 @@ import com.kanban.service.impl.model.Ticket;
 import com.kanban.service.impl.model.TicketStatus;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -17,6 +18,7 @@ import javax.sql.DataSource;
 import java.util.*;
 
 @Repository
+@Qualifier("jdbcTicketDAO")
 public class TicketDAOImpl implements TicketDAO {
 
     @Autowired
@@ -26,8 +28,8 @@ public class TicketDAOImpl implements TicketDAO {
 
     final private static String FIND_ALL_TICKETS = "SELECT " +
                                                    "ti.id as ticket_id, ti.title as ticket_title, ti.description as ticket_description, ti.status as ticket_status, " +
-                                                   "ta.id as task_id, ta.name as task_name, ta.done as task_status" +
-                                                   "FROM ticket ti" +
+                                                   "ta.id as task_id, ta.name as task_name, ta.done as task_status " +
+                                                   "FROM ticket ti " +
                                                    "LEFT JOIN task ta " +
                                                    "ON ti.id = ta.ticket_id";
 
@@ -58,9 +60,9 @@ public class TicketDAOImpl implements TicketDAO {
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(FIND_ALL_TICKETS);
 
         for (Map<String, Object> row: rows) {
-            long ticketId = (long) row.get("ticekt_id");
+            long ticketId = (long) row.get("ticket_id");
 
-            Ticket ticket = null;
+            Ticket ticket;
 
             if (tickets.containsKey(ticketId)) {
                 ticket = tickets.get(ticketId);

@@ -3,6 +3,7 @@ package com.kanban.service.impl.service;
 import com.kanban.service.impl.dao.TicketDAO;
 import com.kanban.service.impl.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Collection;
 public class TicketService {
 
     @Autowired
+    @Qualifier("jdbcTicketDAO")
     private TicketDAO ticketDAO;
 
 
