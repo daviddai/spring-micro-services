@@ -82,10 +82,13 @@ public class TicketDAOImpl implements TicketDAO {
                     tickets.put(ticketId, ticket);
                 }
 
-                long taskId = resultSet.getLong("task_id");
-                String taskName = resultSet.getString("task_name");
-                boolean done = resultSet.getBoolean("task_done");
-                ticket.getTasks().add(new Task(taskId, taskName, done));
+                Long taskId = resultSet.getLong("task_id");
+                // todo: find a way to check if task is null or not
+                if (taskId != null) {
+                    String taskName = resultSet.getString("task_name");
+                    boolean done = resultSet.getBoolean("task_done");
+                    ticket.getTasks().add(new Task(taskId.longValue(), taskName, done));
+                }
             }
 
             return new ArrayList<>(tickets.values());
