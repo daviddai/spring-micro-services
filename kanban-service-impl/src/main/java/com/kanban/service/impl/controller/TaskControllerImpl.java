@@ -6,6 +6,7 @@ import com.kanban.service.impl.facade.KanbanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +17,8 @@ public class TaskControllerImpl implements TaskController {
     private KanbanFacade kanbanFacade;
 
     @Override
-    public ResponseEntity<Response> toggleStatus(long ticketId, long taskId) {
+    public ResponseEntity<Response> toggleStatus(@PathVariable("ticketId") long ticketId,
+                                                 @PathVariable("taskId") long taskId) {
         kanbanFacade.toggleTaskStatus(ticketId, taskId);
         return ResponseEntity.ok(new Response(true));
     }

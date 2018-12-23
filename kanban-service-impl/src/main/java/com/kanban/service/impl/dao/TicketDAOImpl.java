@@ -24,19 +24,21 @@ public class TicketDAOImpl implements TicketDAO {
     private JdbcTemplate jdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
 
-    final private static String FIND_ALL_TICKETS = "SELECT " +
-                                                   "       ti.id as ticket_id, " +
-                                                   "       ti.title as ticket_title, " +
-                                                   "       ti.description as ticket_description, " +
-                                                   "       ti.status as ticket_status, " +
-                                                   "       ta.id as task_id, " +
-                                                   "       ta.name as task_name, " +
-                                                   "       ta.done as task_done " +
-                                                   "FROM ticket ti " +
-                                                   "LEFT JOIN task ta " +
-                                                   "ON ti.id = ta.ticket_id";
+    final private static String FIND_ALL_TICKETS_WITH_TASKS = "SELECT " +
+                                                              "       ti.id as ticket_id, " +
+                                                              "       ti.title as ticket_title, " +
+                                                              "       ti.description as ticket_description, " +
+                                                              "       ti.status as ticket_status, " +
+                                                              "       ta.id as task_id, " +
+                                                              "       ta.name as task_name, " +
+                                                              "       ta.done as task_done " +
+                                                              "FROM ticket ti " +
+                                                              "LEFT JOIN task ta " +
+                                                              "ON ti.id = ta.ticket_id";
 
-    final private static String FIND_TICKET_BY_ID = FIND_ALL_TICKETS + " WHERE ti.id = :ticket_id";
+    final private static String FIND_TICKET_BY_ID = "SELECT id, title, description, status " +
+                                                    "FROM ticket " +
+                                                    "WHERE id = :id";
 
     final private static String UPDATE_TICKET_BY_ID = "UPDATE ticket " +
                                                       "SET title = :title, description = :description, status = :status " +
@@ -59,7 +61,7 @@ public class TicketDAOImpl implements TicketDAO {
 
     @Override
     public List<Ticket> findAll() {
-        return jdbcTemplate.query(FIND_ALL_TICKETS, resultSet -> {
+        return jdbcTemplate.query(FIND_ALL_TICKETS_WITH_TASKS, resultSet -> {
             Map<Long, Ticket> tickets = new HashMap<>();
 
             while (resultSet.next()) {
@@ -96,13 +98,14 @@ public class TicketDAOImpl implements TicketDAO {
 
     @Override
     public Optional<Ticket> findById(long id) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("id", id);
         Ticket ticket = (Ticket) jdbcTemplate.query(FIND_TICKET_BY_ID, (resultSet, i) -> {
             long ticketId = resultSet.getLong("id");
             String ticketTitle = resultSet.getString("title");
             String ticketDescription = resultSet.getString("description");
             String ticketStatus = resultSet.getString("status");
             return new Ticket(ticketId, ticketTitle, ticketDescription, TicketStatus.valueOf(ticketStatus), new ArrayList<>());
-        });
+        }, sqlParameterSource);
 
         return Optional.of(ticket);
     }
