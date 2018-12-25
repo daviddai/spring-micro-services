@@ -1,6 +1,8 @@
 package com.kanban.service.impl.model;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
 
     private long id;
     private String name;

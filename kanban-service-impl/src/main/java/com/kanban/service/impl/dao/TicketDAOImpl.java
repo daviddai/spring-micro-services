@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,7 @@ public class TicketDAOImpl implements TicketDAO {
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private SimpleJdbcInsert simpleJdbcInsert;
 
     final private static String FIND_ALL_TICKETS_WITH_TASKS = "SELECT " +
@@ -47,6 +49,7 @@ public class TicketDAOImpl implements TicketDAO {
     @PostConstruct
     private void postConstruct() {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
     }
 
@@ -99,15 +102,20 @@ public class TicketDAOImpl implements TicketDAO {
     @Override
     public Optional<Ticket> findById(long id) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("id", id);
-        Ticket ticket = (Ticket) jdbcTemplate.query(FIND_TICKET_BY_ID, (resultSet, i) -> {
-            long ticketId = resultSet.getLong("id");
-            String ticketTitle = resultSet.getString("title");
-            String ticketDescription = resultSet.getString("description");
-            String ticketStatus = resultSet.getString("status");
-            return new Ticket(ticketId, ticketTitle, ticketDescription, TicketStatus.valueOf(ticketStatus), new ArrayList<>());
-        }, sqlParameterSource);
 
-        return Optional.of(ticket);
+        Ticket ticket = namedParameterJdbcTemplate.query(FIND_TICKET_BY_ID, sqlParameterSource, resultSet -> {
+            if (resultSet.next()) {
+                long ticketId = resultSet.getLong("id");
+                String ticketTitle = resultSet.getString("title");
+                String ticketDescription = resultSet.getString("description");
+                String ticketStatus = resultSet.getString("status");
+                return new Ticket(ticketId, ticketTitle, ticketDescription, TicketStatus.getTicketStatus(ticketStatus), new ArrayList<>());
+            } else {
+                return null;
+            }
+        });
+
+        return ticket != null ? Optional.of(ticket) : Optional.empty();
     }
 
     @Override

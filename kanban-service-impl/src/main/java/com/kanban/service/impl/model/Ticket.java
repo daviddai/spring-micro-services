@@ -1,9 +1,10 @@
 package com.kanban.service.impl.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class Ticket {
+public class Ticket implements Serializable {
 
     private long id;
     private String title;
