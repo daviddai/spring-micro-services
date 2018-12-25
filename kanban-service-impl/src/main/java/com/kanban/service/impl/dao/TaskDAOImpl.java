@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,7 @@ public class TaskDAOImpl implements TaskDAO {
     @Autowired
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final static String UPDATE_TASK = "UPDATE task " +
                                               "SET name = :name, " +
@@ -28,6 +30,7 @@ public class TaskDAOImpl implements TaskDAO {
     @PostConstruct
     private void postConstruct() {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     @Override
@@ -42,5 +45,10 @@ public class TaskDAOImpl implements TaskDAO {
                                                                            .addValue("id", task.getId())
                                                                            .addValue("ticket_id", ticketId);
         jdbcTemplate.update(UPDATE_TASK, sqlParameterSource);
+    }
+
+    @Override
+    public void updateStatus(long ticketId, long taskId, boolean done) {
+
     }
 }

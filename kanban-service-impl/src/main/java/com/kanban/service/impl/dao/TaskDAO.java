@@ -10,4 +10,6 @@ public interface TaskDAO {
 
     public void update(long ticketId, Task task);
 
+    public void updateStatus(long ticketId, long taskId, boolean done);
+
 }

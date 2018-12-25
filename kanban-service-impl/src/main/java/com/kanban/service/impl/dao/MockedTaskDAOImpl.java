@@ -30,4 +30,9 @@ public class MockedTaskDAOImpl implements TaskDAO {
                                                    return task;
                                                }));
     }
+
+    @Override
+    public void updateStatus(long ticketId, long taskId, boolean done) {
+
+    }
 }
