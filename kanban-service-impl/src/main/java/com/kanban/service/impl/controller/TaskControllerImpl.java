@@ -5,6 +5,7 @@ import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.http.Response;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.facade.KanbanFacade;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,17 +21,39 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @PostMapping
+    @RequestMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> addTask(@RequestBody TaskDTO taskDTO) {
+        if (taskDTO != null) {
+            if (StringUtils.isNotBlank(taskDTO.getName())) {
+                kanbanFacade.createNewTask(taskDTO);
+                return ResponseEntity.ok(new Response(true, ""));
+            }
+        }
+
+        return ResponseEntity.badRequest().body(new Response(false, "Invalid task dto"));
+    }
+
+    @Override
+    @PostMapping
     @RequestMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> update(@RequestBody TaskDTO taskDTO) {
-        kanbanFacade.updateTask(taskDTO);
-        return ResponseEntity.ok(new Response(true));
+        if (taskDTO != null) {
+            kanbanFacade.updateTask(taskDTO);
+            return ResponseEntity.ok(new Response(true, ""));
+        }
+
+        return ResponseEntity.badRequest().body(new Response(false, "Invalid task dto"));
     }
 
     @Override
     @PostMapping
     @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request) {
-        kanbanFacade.updateTaskStatus(request);
-        return ResponseEntity.ok(new Response(true));
+        if (request != null) {
+            kanbanFacade.updateTaskStatus(request);
+            return ResponseEntity.ok(new Response(true, ""));
+        }
+
+        return ResponseEntity.badRequest().body(new Response(false, "Invalid task status update request"));
     }
 }

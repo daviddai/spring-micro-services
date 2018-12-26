@@ -51,6 +51,7 @@ public class TicketDAOImpl implements TicketDAO {
         jdbcTemplate = new JdbcTemplate(dataSource);
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
+        simpleJdbcInsert.setTableName("ticket");
     }
 
     @Override

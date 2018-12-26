@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public interface TaskController {
 
     @PostMapping
+    @RequestMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Response> addTask(@RequestBody TaskDTO taskDTO);
+
+    @PostMapping
     @RequestMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> update(@RequestBody TaskDTO taskDTO);
+    ResponseEntity<Response> update(@RequestBody TaskDTO taskDTO);
 
     @PostMapping
     @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request);
+    ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request);
 
 }

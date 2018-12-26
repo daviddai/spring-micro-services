@@ -13,6 +13,10 @@ public class TaskService {
     @Qualifier("jdbcTaskDAO")
     private TaskDAO taskDAO;
 
+    public void addTask(Task task) {
+        taskDAO.add(task);
+    }
+
     public void updateTask(Task task) {
         if (task != null) {
             taskDAO.update(task);

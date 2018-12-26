@@ -15,6 +15,11 @@ public class MockedTaskDAOImpl implements TaskDAO {
     }
 
     @Override
+    public void add(Task task) {
+
+    }
+
+    @Override
     public void update(Task newTask) {
         Collection<Ticket> tickets = MockedDatabase.getTickets();
 
