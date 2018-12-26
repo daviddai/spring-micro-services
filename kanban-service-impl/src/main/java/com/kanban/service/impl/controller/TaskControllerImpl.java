@@ -19,8 +19,8 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @PostMapping
-    @RequestMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> toggleStatus(@RequestBody UpdateTaskStatusRequest request) {
+    @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request) {
         kanbanFacade.updateTaskStatus(request);
         return ResponseEntity.ok(new Response(true));
     }

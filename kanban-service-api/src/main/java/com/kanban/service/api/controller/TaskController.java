@@ -15,6 +15,6 @@ public interface TaskController {
 
     @PostMapping
     @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> toggleStatus(@RequestBody UpdateTaskStatusRequest request);
+    public ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request);
 
 }

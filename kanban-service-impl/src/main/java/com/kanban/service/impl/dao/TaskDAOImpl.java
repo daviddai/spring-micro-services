@@ -29,7 +29,7 @@ public class TaskDAOImpl implements TaskDAO {
 
     private final static String UPDATE_TASK_STATUS = "UPDATE task " +
                                                      "SET done = :done " +
-                                                     "WHERE id = :id AND ticket_id = ticket:id";
+                                                     "WHERE id = :id AND ticket_id = :ticket_id";
 
     @PostConstruct
     private void postConstruct() {
