@@ -1,6 +1,7 @@
 package com.kanban.service.impl.controller;
 
 import com.kanban.service.api.controller.TaskController;
+import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.http.Response;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.facade.KanbanFacade;
@@ -16,6 +17,12 @@ public class TaskControllerImpl implements TaskController {
 
     @Autowired
     private KanbanFacade kanbanFacade;
+
+    @Override
+    public ResponseEntity<Response> update(TaskDTO taskDTO) {
+        kanbanFacade.updateTask(taskDTO);
+        return null;
+    }
 
     @Override
     @PostMapping

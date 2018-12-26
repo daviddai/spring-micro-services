@@ -91,7 +91,7 @@ public class TicketDAOImpl implements TicketDAO {
                 if (!resultSet.wasNull()) {
                     String taskName = resultSet.getString("task_name");
                     boolean done = resultSet.getBoolean("task_done");
-                    ticket.getTasks().add(new Task(taskId, taskName, done));
+                    ticket.getTasks().add(new Task(taskId, taskName, done, ticketId));
                 }
             }
 

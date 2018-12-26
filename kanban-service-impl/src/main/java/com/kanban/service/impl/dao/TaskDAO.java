@@ -8,7 +8,7 @@ public interface TaskDAO {
 
     public Collection<Task> findAllByTicketId(long ticketId);
 
-    public void update(long ticketId, Task task);
+    public void update(Task task);
 
     public void updateStatus(long ticketId, long taskId, boolean done);
 

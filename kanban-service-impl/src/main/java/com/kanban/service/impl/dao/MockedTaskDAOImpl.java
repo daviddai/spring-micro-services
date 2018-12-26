@@ -15,11 +15,11 @@ public class MockedTaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public void update(long ticketId, Task newTask) {
+    public void update(Task newTask) {
         Collection<Ticket> tickets = MockedDatabase.getTickets();
 
         tickets.stream()
-               .filter(ticket -> ticket.getId() == ticketId)
+               .filter(ticket -> ticket.getId() == newTask.getTicketId())
                .findFirst()
                .map(ticket -> ticket.getTasks().stream()
                                                .filter(task -> task.getId() == newTask.getId())
