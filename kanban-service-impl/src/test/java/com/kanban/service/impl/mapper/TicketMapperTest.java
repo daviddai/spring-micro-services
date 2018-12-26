@@ -50,7 +50,7 @@ public class TicketMapperTest {
     @Test
     public void testMapTicket() {
         List<Task> tasks = Collections.singletonList(
-                new Task(2, "name", false)
+                new Task(2, "name", false, 1)
         );
 
         Ticket ticket = new Ticket(1, "title", "description", TicketStatus.FINISHED, tasks);

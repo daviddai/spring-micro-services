@@ -1,5 +1,8 @@
 package com.kanban.service.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class TaskDTO {
 
     private long id;
@@ -7,7 +10,11 @@ public class TaskDTO {
     private boolean done;
     private long ticketId;
 
-    public TaskDTO(long id, String name, boolean done, long ticketId) {
+    @JsonCreator
+    public TaskDTO(@JsonProperty("id") long id,
+                   @JsonProperty("name") String name,
+                   @JsonProperty("done") boolean done,
+                   @JsonProperty("ticketId") long ticketId) {
         this.id = id;
         this.name = name;
         this.done = done;

@@ -19,9 +19,11 @@ public class TaskControllerImpl implements TaskController {
     private KanbanFacade kanbanFacade;
 
     @Override
-    public ResponseEntity<Response> update(TaskDTO taskDTO) {
+    @PostMapping
+    @RequestMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> update(@RequestBody TaskDTO taskDTO) {
         kanbanFacade.updateTask(taskDTO);
-        return null;
+        return ResponseEntity.ok(new Response(true));
     }
 
     @Override
