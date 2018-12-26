@@ -1,6 +1,7 @@
 package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TicketDTO;
+import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.mapper.TicketMapper;
 import com.kanban.service.impl.model.Ticket;
 import com.kanban.service.impl.model.TicketStatus;
@@ -33,8 +34,10 @@ public class KanbanFacade {
         }
     }
 
-    public void toggleTaskStatus(long ticketId, long taskId) {
-
+    public void updateTaskStatus(UpdateTaskStatusRequest request) {
+        if (request != null) {
+            taskService.updateTaskStatus(request.getTicketId(), request.getTaskId(), request.isDone());
+        }
     }
 
     public void updateTicketStatus(TicketDTO ticketDTO) {

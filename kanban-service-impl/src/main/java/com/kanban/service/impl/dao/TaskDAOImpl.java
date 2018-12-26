@@ -27,6 +27,10 @@ public class TaskDAOImpl implements TaskDAO {
                                               "    done = :done " +
                                               "WHERE id = :id AND ticket_id = ticket:id";
 
+    private final static String UPDATE_TASK_STATUS = "UPDATE task " +
+                                                     "SET done = :done " +
+                                                     "WHERE id = :id AND ticket_id = ticket:id";
+
     @PostConstruct
     private void postConstruct() {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -44,11 +48,14 @@ public class TaskDAOImpl implements TaskDAO {
                                                                            .addValue("done", task.isDone())
                                                                            .addValue("id", task.getId())
                                                                            .addValue("ticket_id", ticketId);
-        jdbcTemplate.update(UPDATE_TASK, sqlParameterSource);
+        namedParameterJdbcTemplate.update(UPDATE_TASK, sqlParameterSource);
     }
 
     @Override
     public void updateStatus(long ticketId, long taskId, boolean done) {
-
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("done", done)
+                                                                           .addValue("id", taskId)
+                                                                           .addValue("ticket_id", ticketId);
+        namedParameterJdbcTemplate.update(UPDATE_TASK_STATUS, sqlParameterSource);
     }
 }

@@ -12,4 +12,7 @@ public class Response {
         this.succeed = succeed;
     }
 
+    public boolean isSucceed() {
+        return succeed;
+    }
 }
