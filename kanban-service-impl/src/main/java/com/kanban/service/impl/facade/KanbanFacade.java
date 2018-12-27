@@ -55,11 +55,13 @@ public class KanbanFacade {
         this.ticketService.updateTicket(TicketMapper.INSTANCE.mapTicketDTO(ticketDTO));
     }
 
-    public void createNewTask(TaskDTO taskDTO) {
+    public long createNewTask(TaskDTO taskDTO) {
         Task task = TaskMapper.INSTANCE.mapTaskDTO(taskDTO);
 
         if (task != null) {
-            taskService.addTask(task);
+            return taskService.addTask(task);
+        } else {
+            return -1;
         }
     }
 

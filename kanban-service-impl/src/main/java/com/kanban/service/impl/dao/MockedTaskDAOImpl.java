@@ -15,8 +15,8 @@ public class MockedTaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public void add(Task task) {
-
+    public long add(Task task) {
+        return -1;
     }
 
     @Override

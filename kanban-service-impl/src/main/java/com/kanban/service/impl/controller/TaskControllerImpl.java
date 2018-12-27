@@ -2,6 +2,7 @@ package com.kanban.service.impl.controller;
 
 import com.kanban.service.api.controller.TaskController;
 import com.kanban.service.api.model.TaskDTO;
+import com.kanban.service.api.model.http.AddTaskResponse;
 import com.kanban.service.api.model.http.Response;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.facade.KanbanFacade;
@@ -22,15 +23,18 @@ public class TaskControllerImpl implements TaskController {
     @Override
     @PostMapping
     @RequestMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> addTask(@RequestBody TaskDTO taskDTO) {
+    public ResponseEntity<AddTaskResponse> addTask(@RequestBody TaskDTO taskDTO) {
         if (taskDTO != null) {
             if (StringUtils.isNotBlank(taskDTO.getName())) {
-                kanbanFacade.createNewTask(taskDTO);
-                return ResponseEntity.ok(new Response(true, ""));
+                long taskId = kanbanFacade.createNewTask(taskDTO);
+
+                if (taskId != -1) {
+                    return ResponseEntity.ok(new AddTaskResponse(true, "", taskId));
+                }
             }
         }
 
-        return ResponseEntity.badRequest().body(new Response(false, "Invalid task dto"));
+        return ResponseEntity.badRequest().body(new AddTaskResponse(false, "Invalid task dto", -1));
     }
 
     @Override

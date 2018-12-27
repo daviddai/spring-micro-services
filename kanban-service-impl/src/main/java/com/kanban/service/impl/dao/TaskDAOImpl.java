@@ -41,15 +41,16 @@ public class TaskDAOImpl implements TaskDAO {
         namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
         simpleJdbcInsert.setTableName("task");
+        simpleJdbcInsert.setGeneratedKeyName("id");
     }
 
     @Override
-    public void add(Task task) {
+    public long add(Task task) {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("name", task.getName());
         parameters.put("done", task.isDone());
         parameters.put("ticket_id", task.getTicketId());
-        simpleJdbcInsert.execute(parameters);
+        return (long) simpleJdbcInsert.executeAndReturnKey(parameters);
     }
 
     @Override

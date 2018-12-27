@@ -2,6 +2,7 @@ version : '2'
 services:
   kanban-service:
     container_name: kanban-service
+    hostname: kanban-service
     tty: true
     build: .
     ports:
