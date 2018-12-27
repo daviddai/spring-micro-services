@@ -6,10 +6,7 @@ import com.kanban.service.api.model.http.Response;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/task")
@@ -26,5 +23,9 @@ public interface TaskController {
     @PostMapping
     @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request);
+
+    @PostMapping
+    @RequestMapping(value = "/delete/{ticketId}/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Response> delete(@PathVariable("ticketId") long ticketId, @PathVariable("taskId") long taskId);
 
 }

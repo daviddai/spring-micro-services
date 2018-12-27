@@ -36,15 +36,8 @@ public class KanbanFacade {
         }
     }
 
-    public void updateTask(TaskDTO taskDTO) {
-        Task task = TaskMapper.INSTANCE.mapTaskDTO(taskDTO);
-
-        if (task != null) {
-            taskService.updateTask(task);
-        }
-    }
-
     public void createNewTicket(TicketDTO ticketDTO) {
+
     }
 
     public void updateTicket(TicketDTO ticketDTO) {
@@ -65,7 +58,19 @@ public class KanbanFacade {
         }
     }
 
+    public void updateTask(TaskDTO taskDTO) {
+        Task task = TaskMapper.INSTANCE.mapTaskDTO(taskDTO);
+
+        if (task != null) {
+            taskService.updateTask(task);
+        }
+    }
+
     public void updateTaskStatus(UpdateTaskStatusRequest request) {
         taskService.updateTaskStatus(request.getTicketId(), request.getTaskId(), request.isDone());
+    }
+
+    public void deleteTask(long ticketId, long taskId) {
+        
     }
 }

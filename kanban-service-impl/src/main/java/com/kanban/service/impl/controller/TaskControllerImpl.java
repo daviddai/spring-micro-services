@@ -60,4 +60,11 @@ public class TaskControllerImpl implements TaskController {
 
         return ResponseEntity.badRequest().body(new Response(false, "Invalid task status update request"));
     }
+
+    @Override
+    @RequestMapping(value = "/delete/{ticketId}/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> delete(@PathVariable("ticketId") long ticketId, @PathVariable("taskId") long taskId) {
+        kanbanFacade.deleteTask(ticketId, taskId);
+        return ResponseEntity.ok(new Response(true, ""));
+    }
 }
