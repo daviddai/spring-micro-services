@@ -2,6 +2,7 @@ package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.TicketDTO;
+import com.kanban.service.api.model.http.UpdateTaskNameRequest;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.mapper.TaskMapper;
 import com.kanban.service.impl.mapper.TicketMapper;
@@ -9,6 +10,7 @@ import com.kanban.service.impl.model.Task;
 import com.kanban.service.impl.model.Ticket;
 import com.kanban.service.impl.service.TaskService;
 import com.kanban.service.impl.service.TicketService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,12 @@ public class KanbanFacade {
 
     public void updateTicketStatus(TicketDTO ticketDTO) {
         this.ticketService.updateTicket(TicketMapper.INSTANCE.mapTicketDTO(ticketDTO));
+    }
+
+    public void updateTaskName(UpdateTaskNameRequest request) {
+        if (request != null && StringUtils.isNotBlank(request.getTaskName())) {
+            taskService.updateTaskName(request.getTicketId(), request.getTaskId(), request.getTaskName());
+        }
     }
 
     public long createNewTask(TaskDTO taskDTO) {

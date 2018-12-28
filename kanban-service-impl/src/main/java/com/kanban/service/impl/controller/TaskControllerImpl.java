@@ -4,6 +4,7 @@ import com.kanban.service.api.controller.TaskController;
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.http.AddTaskResponse;
 import com.kanban.service.api.model.http.Response;
+import com.kanban.service.api.model.http.UpdateTaskNameRequest;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import com.kanban.service.impl.facade.KanbanFacade;
 import org.apache.commons.lang3.StringUtils;
@@ -64,6 +65,17 @@ public class TaskControllerImpl implements TaskController {
         }
 
         return ResponseEntity.badRequest().body(new Response(false, "Invalid task status update request"));
+    }
+
+    @Override
+    @RequestMapping(value = "/update/name", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> updateName(@RequestBody UpdateTaskNameRequest request) {
+        if (request != null) {
+            kanbanFacade.updateTaskName(request);
+            return ResponseEntity.ok(new Response(true, ""));
+        }
+
+        return ResponseEntity.badRequest().body(new Response(false, "Invalid task name update request"));
     }
 
     @Override

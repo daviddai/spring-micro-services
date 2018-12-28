@@ -3,6 +3,7 @@ package com.kanban.service.api.controller;
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.http.AddTaskResponse;
 import com.kanban.service.api.model.http.Response;
+import com.kanban.service.api.model.http.UpdateTaskNameRequest;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,10 @@ public interface TaskController {
     @PostMapping
     @RequestMapping(value = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Response> updateStatus(@RequestBody UpdateTaskStatusRequest request);
+
+    @PostMapping
+    @RequestMapping(value = "/update/name", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Response> updateName(@RequestBody UpdateTaskNameRequest request);
 
     @PostMapping
     @RequestMapping(value = "/delete/{ticketId}/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)

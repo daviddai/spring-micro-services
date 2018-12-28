@@ -42,6 +42,11 @@ public class MockedTaskDAOImpl implements TaskDAO {
     }
 
     @Override
+    public void updateName(long ticketId, long taskId, String name) {
+        
+    }
+
+    @Override
     public void delete(long ticketId, long taskId) {
 
     }

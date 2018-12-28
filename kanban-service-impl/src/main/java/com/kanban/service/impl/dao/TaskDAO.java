@@ -6,14 +6,16 @@ import java.util.Collection;
 
 public interface TaskDAO {
 
-    public long add(Task task);
+    long add(Task task);
 
-    public Collection<Task> findAllByTicketId(long ticketId);
+    Collection<Task> findAllByTicketId(long ticketId);
 
-    public void update(Task task);
+    void update(Task task);
 
-    public void updateStatus(long ticketId, long taskId, boolean done);
+    void updateStatus(long ticketId, long taskId, boolean done);
 
-    public void delete(long ticketId, long taskId);
+    void updateName(long ticketId, long taskId, String name);
+
+    void delete(long ticketId, long taskId);
 
 }
