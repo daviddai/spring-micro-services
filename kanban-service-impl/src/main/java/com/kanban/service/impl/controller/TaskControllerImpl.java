@@ -10,7 +10,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
@@ -63,8 +68,8 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     @RequestMapping(value = "/delete/{ticketId}/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> delete(@PathVariable("ticketId") long ticketId, @PathVariable("taskId") long taskId) {
-        kanbanFacade.deleteTask(ticketId, taskId);
+    public ResponseEntity<Response> remove(@PathVariable("ticketId") long ticketId, @PathVariable("taskId") long taskId) {
+        kanbanFacade.removeTaskFromTicket(ticketId, taskId);
         return ResponseEntity.ok(new Response(true, ""));
     }
 }

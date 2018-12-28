@@ -27,8 +27,8 @@ public class TaskService {
         this.taskDAO.updateStatus(ticketId, taskId, done);
     }
 
-    public void deleteTask(long ticketId, long taskId) {
-
+    public void removeTask(long ticketId, long taskId) {
+        taskDAO.delete(ticketId, taskId);
     }
 
 }

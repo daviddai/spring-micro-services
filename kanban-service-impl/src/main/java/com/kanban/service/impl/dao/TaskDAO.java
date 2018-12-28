@@ -14,6 +14,6 @@ public interface TaskDAO {
 
     public void updateStatus(long ticketId, long taskId, boolean done);
 
-    public void remove(long ticketId, long taskId);
+    public void delete(long ticketId, long taskId);
 
 }

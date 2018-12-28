@@ -70,7 +70,7 @@ public class KanbanFacade {
         taskService.updateTaskStatus(request.getTicketId(), request.getTaskId(), request.isDone());
     }
 
-    public void deleteTask(long ticketId, long taskId) {
-        
+    public void removeTaskFromTicket(long ticketId, long taskId) {
+        taskService.removeTask(ticketId, taskId);
     }
 }

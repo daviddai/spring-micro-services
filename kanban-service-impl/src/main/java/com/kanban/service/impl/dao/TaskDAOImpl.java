@@ -35,7 +35,7 @@ public class TaskDAOImpl implements TaskDAO {
                                                      "SET done = :done " +
                                                      "WHERE id = :id AND ticket_id = :ticket_id";
 
-    private final static String REMOVE_TASK = "DELETE FROM task WHERE id = :id AND ticket_id = :ticket_id";
+    private final static String DELETE_TASK = "DELETE FROM task WHERE id = :id AND ticket_id = :ticket_id";
 
     @PostConstruct
     private void postConstruct() {
@@ -78,10 +78,10 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     @Override
-    public void remove(long ticketId, long taskId) {
+    public void delete(long ticketId, long taskId) {
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("id", taskId)
                                                                            .addValue("ticket_id", ticketId);
 
-        namedParameterJdbcTemplate.update(REMOVE_TASK, sqlParameterSource);
+        namedParameterJdbcTemplate.update(DELETE_TASK, sqlParameterSource);
     }
 }
