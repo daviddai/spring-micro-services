@@ -125,7 +125,7 @@ public class TicketDAOImpl implements TicketDAO {
                                                                            .addValue("description", ticket.getDescription())
                                                                            .addValue("status", ticket.getStatus().getDescription())
                                                                            .addValue("id", ticket.getId());
-        jdbcTemplate.update(UPDATE_TICKET_BY_ID, sqlParameterSource);
+        namedParameterJdbcTemplate.update(UPDATE_TICKET_BY_ID, sqlParameterSource);
     }
 
 }
