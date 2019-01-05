@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -15,6 +17,10 @@ public class TaskService {
 
     public long addTask(Task task) {
         return taskDAO.add(task);
+    }
+
+    public void addTasks(List<Task> tasks) {
+        this.taskDAO.addBatch(tasks);
     }
 
     public void updateTask(Task task) {

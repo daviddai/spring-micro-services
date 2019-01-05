@@ -15,6 +15,9 @@ public class TicketService {
     @Qualifier("jdbcTicketDAO")
     private TicketDAO ticketDAO;
 
+    public long createTicket(Ticket ticket) {
+        return this.ticketDAO.add(ticket);
+    }
 
     public Collection<Ticket> getAllTickets() {
         return this.ticketDAO.findAll();

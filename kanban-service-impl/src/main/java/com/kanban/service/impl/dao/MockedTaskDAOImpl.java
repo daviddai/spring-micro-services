@@ -5,6 +5,7 @@ import com.kanban.service.impl.model.Ticket;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
+import java.util.List;
 
 @Repository
 public class MockedTaskDAOImpl implements TaskDAO {
@@ -17,6 +18,11 @@ public class MockedTaskDAOImpl implements TaskDAO {
     @Override
     public long add(Task task) {
         return -1;
+    }
+
+    @Override
+    public void addBatch(List<Task> tasks) {
+
     }
 
     @Override

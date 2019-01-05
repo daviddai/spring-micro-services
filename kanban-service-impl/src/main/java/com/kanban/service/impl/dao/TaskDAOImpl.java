@@ -14,7 +14,9 @@ import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Qualifier("jdbcTaskDAO")
 @Repository
@@ -58,6 +60,21 @@ public class TaskDAOImpl implements TaskDAO {
         parameters.put("done", task.isDone());
         parameters.put("ticket_id", task.getTicketId());
         return (long) simpleJdbcInsert.executeAndReturnKey(parameters);
+    }
+
+    @Override
+    public void addBatch(List<Task> tasks) {
+        SqlParameterSource[] sqlParameterSources = new MapSqlParameterSource[tasks.size()];
+
+        List<SqlParameterSource> sqlParameterSourceList = tasks.stream()
+                .map(task -> new MapSqlParameterSource().addValue("name", task.getName())
+                                                        .addValue("done", task.isDone())
+                                                        .addValue("ticket_id", task.getTicketId()))
+                .collect(Collectors.toList());
+
+        sqlParameterSources = sqlParameterSourceList.toArray(sqlParameterSources);
+
+        simpleJdbcInsert.executeBatch(sqlParameterSources);
     }
 
     @Override

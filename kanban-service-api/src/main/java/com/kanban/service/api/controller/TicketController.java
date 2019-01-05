@@ -1,6 +1,8 @@
 package com.kanban.service.api.controller;
 
 import com.kanban.service.api.model.TicketDTO;
+import com.kanban.service.api.model.http.CreateTicketRequest;
+import com.kanban.service.api.model.http.CreateTicketResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +12,10 @@ import java.util.Collection;
 @RestController
 @RequestMapping(path = "/ticket")
 public interface TicketController {
+
+    @PostMapping
+    @RequestMapping(path = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<CreateTicketResponse> create(@RequestBody CreateTicketRequest request);
 
     @GetMapping
     @RequestMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)

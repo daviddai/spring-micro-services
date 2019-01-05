@@ -7,12 +7,12 @@ import java.util.Optional;
 
 public interface TicketDAO {
 
-    public void add(Ticket ticket);
+    long add(Ticket ticket);
 
-    public List<Ticket> findAll();
+    List<Ticket> findAll();
 
-    public Optional<Ticket> findById(long id);
+    Optional<Ticket> findById(long id);
 
-    public void update(Ticket ticket);
+    void update(Ticket ticket);
 
 }

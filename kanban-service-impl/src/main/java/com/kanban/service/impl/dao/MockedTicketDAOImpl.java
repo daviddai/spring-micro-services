@@ -10,8 +10,8 @@ import java.util.Optional;
 public class MockedTicketDAOImpl implements TicketDAO {
 
     @Override
-    public void add(Ticket ticket) {
-
+    public long add(Ticket ticket) {
+        return -1;
     }
 
     @Override
