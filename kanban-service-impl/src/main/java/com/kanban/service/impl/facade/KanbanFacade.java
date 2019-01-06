@@ -13,6 +13,7 @@ import com.kanban.service.impl.service.TicketService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
@@ -40,6 +41,7 @@ public class KanbanFacade {
     }
 
     // todo: add transaction between adding ticket and tasks
+    @Transactional
     public CreateTicketResponse createNewTicket(CreateTicketRequest request) {
         Ticket ticket = new Ticket();
         ticket.setTitle(request.getTicketTitle());
