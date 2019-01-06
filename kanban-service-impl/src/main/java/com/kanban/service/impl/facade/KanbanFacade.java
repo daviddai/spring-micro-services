@@ -42,6 +42,7 @@ public class KanbanFacade {
         }
     }
 
+    // todo: add transaction between adding ticket and tasks
     public CreateTicketResponse createNewTicket(CreateTicketRequest request) {
         Ticket ticket = new Ticket();
         ticket.setTitle(request.getTicketTitle());
