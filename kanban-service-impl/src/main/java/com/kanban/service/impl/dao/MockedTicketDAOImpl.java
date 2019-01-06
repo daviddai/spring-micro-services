@@ -1,6 +1,7 @@
 package com.kanban.service.impl.dao;
 
 import com.kanban.service.impl.model.Ticket;
+import com.kanban.service.impl.model.TicketStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -39,5 +40,10 @@ public class MockedTicketDAOImpl implements TicketDAO {
                           ticket.setStatus(newTicket.getStatus());
                           return ticket;
                       });
+    }
+
+    @Override
+    public void updateStatus(long ticketId, TicketStatus newTicketStatus) {
+
     }
 }

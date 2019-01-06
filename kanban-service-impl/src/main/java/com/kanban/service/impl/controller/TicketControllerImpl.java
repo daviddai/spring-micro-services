@@ -4,6 +4,7 @@ import com.kanban.service.api.controller.TicketController;
 import com.kanban.service.api.model.TicketDTO;
 import com.kanban.service.api.model.http.CreateTicketRequest;
 import com.kanban.service.api.model.http.CreateTicketResponse;
+import com.kanban.service.api.model.http.UpdateTicketStatusRequest;
 import com.kanban.service.impl.facade.KanbanFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -39,8 +40,18 @@ public class TicketControllerImpl implements TicketController {
     }
 
     @Override
+    @PostMapping
+    @RequestMapping(path = "/update/status", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity updateStatus(@RequestBody UpdateTicketStatusRequest request) {
+        this.kanbanFacade.updateTicketStatus(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    @PostMapping
+    @RequestMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity update(@RequestBody TicketDTO ticketDTO) {
-        this.kanbanFacade.updateTicketStatus(ticketDTO);
+        this.kanbanFacade.updateTicket(ticketDTO);
         return ResponseEntity.ok().build();
     }
 

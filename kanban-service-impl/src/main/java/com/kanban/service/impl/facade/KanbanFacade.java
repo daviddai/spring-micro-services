@@ -2,10 +2,7 @@ package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.TicketDTO;
-import com.kanban.service.api.model.http.CreateTicketRequest;
-import com.kanban.service.api.model.http.CreateTicketResponse;
-import com.kanban.service.api.model.http.UpdateTaskNameRequest;
-import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
+import com.kanban.service.api.model.http.*;
 import com.kanban.service.impl.mapper.TaskMapper;
 import com.kanban.service.impl.mapper.TicketMapper;
 import com.kanban.service.impl.model.Task;
@@ -70,11 +67,11 @@ public class KanbanFacade {
     }
 
     public void updateTicket(TicketDTO ticketDTO) {
-
+        this.ticketService.updateTicket(TicketMapper.INSTANCE.mapTicketDTO(ticketDTO));
     }
 
-    public void updateTicketStatus(TicketDTO ticketDTO) {
-        this.ticketService.updateTicket(TicketMapper.INSTANCE.mapTicketDTO(ticketDTO));
+    public void updateTicketStatus(UpdateTicketStatusRequest request) {
+        this.ticketService.updateTicketStatus(request.getTicketId(), TicketStatus.getTicketStatus(request.getNewTicketStatus()));
     }
 
     public void updateTaskName(UpdateTaskNameRequest request) {

@@ -57,6 +57,10 @@ public class TicketDAOImpl implements TicketDAO {
                                                       "SET title = :title, description = :description, status = :status " +
                                                       "WHERE id = :id";
 
+    final private static String UPDATE_TICKET_STATUS_BY_ID = "UPDATE ticket " +
+                                                             "SET status = :status " +
+                                                             "WHERE id = :id";
+
     @PostConstruct
     private void postConstruct() {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -116,6 +120,13 @@ public class TicketDAOImpl implements TicketDAO {
                                                                            .addValue("status", ticket.getStatus().getDescription())
                                                                            .addValue("id", ticket.getId());
         namedParameterJdbcTemplate.update(UPDATE_TICKET_BY_ID, sqlParameterSource);
+    }
+
+    @Override
+    public void updateStatus(long ticketId, TicketStatus newTicketStatus) {
+        SqlParameterSource sqlParameterSource = new MapSqlParameterSource().addValue("status", newTicketStatus.getDescription())
+                                                                           .addValue("id", ticketId);
+        namedParameterJdbcTemplate.update(UPDATE_TICKET_STATUS_BY_ID, sqlParameterSource);
     }
 
     private Ticket setTicket(ResultSet resultSet, Ticket ticket) throws SQLException {

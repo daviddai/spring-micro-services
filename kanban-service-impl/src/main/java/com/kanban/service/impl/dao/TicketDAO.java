@@ -1,6 +1,7 @@
 package com.kanban.service.impl.dao;
 
 import com.kanban.service.impl.model.Ticket;
+import com.kanban.service.impl.model.TicketStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +15,7 @@ public interface TicketDAO {
     Optional<Ticket> findById(long id);
 
     void update(Ticket ticket);
+
+    void updateStatus(long ticketId, TicketStatus newTicketStatus);
 
 }
