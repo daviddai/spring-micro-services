@@ -1,21 +1,34 @@
 package com.kanban.service.api.model.http;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.micro.service.common.model.http.Response;
 
 public class AddTaskResponse extends Response {
+    private final static String TASK_ID = "taskId";
 
-    private long taskId;
+    public static class Builder {
+        private AddTaskResponse addTaskResponse;
 
-    @JsonCreator
-    public AddTaskResponse(@JsonProperty("succeed") boolean succeed,
-                           @JsonProperty("message") String message,
-                           @JsonProperty("taskId") long taskId) {
-        super(succeed, message);
-        this.taskId = taskId;
-    }
+        public Builder() {
+            this.addTaskResponse = new AddTaskResponse();
+        }
 
-    public long getTaskId() {
-        return taskId;
+        public Builder isSucceed(boolean succeed) {
+            this.addTaskResponse.succeed = succeed;
+            return this;
+        }
+
+        public Builder withMessage(String message) {
+            this.addTaskResponse.message = message;
+            return this;
+        }
+
+        public Builder withTaskId(long taskId) {
+            this.addTaskResponse.getData().put(TASK_ID, taskId);
+            return this;
+        }
+
+        public AddTaskResponse build() {
+            return addTaskResponse;
+        }
     }
 }

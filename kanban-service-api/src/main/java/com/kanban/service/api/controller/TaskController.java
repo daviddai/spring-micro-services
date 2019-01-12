@@ -2,16 +2,12 @@ package com.kanban.service.api.controller;
 
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.http.AddTaskResponse;
-import com.kanban.service.api.model.http.Response;
 import com.kanban.service.api.model.http.UpdateTaskNameRequest;
 import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
+import com.micro.service.common.model.http.Response;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/task")
