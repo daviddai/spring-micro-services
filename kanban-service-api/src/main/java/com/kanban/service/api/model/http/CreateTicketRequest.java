@@ -6,11 +6,13 @@ public class CreateTicketRequest {
 
     private String ticketTitle;
     private String ticketDescription;
+    private String ticketStatus;
     private List<String> taskNames;
 
-    public CreateTicketRequest(String ticketTitle, String ticketDescription, List<String> taskNames) {
+    public CreateTicketRequest(String ticketTitle, String ticketDescription, String ticketStatus, List<String> taskNames) {
         this.ticketTitle = ticketTitle;
         this.ticketDescription = ticketDescription;
+        this.ticketStatus = ticketStatus;
         this.taskNames = taskNames;
     }
 
@@ -20,6 +22,10 @@ public class CreateTicketRequest {
 
     public String getTicketDescription() {
         return ticketDescription;
+    }
+
+    public String getTicketStatus() {
+        return ticketStatus;
     }
 
     public List<String> getTaskNames() {

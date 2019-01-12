@@ -46,7 +46,7 @@ public class KanbanFacade {
         Ticket ticket = new Ticket();
         ticket.setTitle(request.getTicketTitle());
         ticket.setDescription(request.getTicketDescription());
-        ticket.setStatus(TicketStatus.TODO);
+        ticket.setStatus(TicketStatus.getTicketStatus(request.getTicketStatus()));
 
         long ticketId = ticketService.createTicket(ticket);
 
