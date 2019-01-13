@@ -2,9 +2,9 @@ package com.kanban.service.impl.controller;
 
 import com.kanban.service.api.controller.TaskController;
 import com.kanban.service.api.model.TaskDTO;
-import com.kanban.service.api.model.http.AddTaskResponse;
-import com.kanban.service.api.model.http.UpdateTaskNameRequest;
-import com.kanban.service.api.model.http.UpdateTaskStatusRequest;
+import com.kanban.service.api.model.http.request.UpdateTaskNameRequest;
+import com.kanban.service.api.model.http.request.UpdateTaskStatusRequest;
+import com.kanban.service.api.model.http.response.AddTaskResponse;
 import com.kanban.service.impl.facade.KanbanFacade;
 import com.micro.service.common.model.http.Response;
 import org.apache.commons.lang3.StringUtils;

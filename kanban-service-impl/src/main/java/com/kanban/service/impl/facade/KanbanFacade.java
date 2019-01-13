@@ -2,7 +2,11 @@ package com.kanban.service.impl.facade;
 
 import com.kanban.service.api.model.TaskDTO;
 import com.kanban.service.api.model.TicketDTO;
-import com.kanban.service.api.model.http.*;
+import com.kanban.service.api.model.http.request.CreateTicketRequest;
+import com.kanban.service.api.model.http.request.UpdateTaskNameRequest;
+import com.kanban.service.api.model.http.request.UpdateTaskStatusRequest;
+import com.kanban.service.api.model.http.request.UpdateTicketStatusRequest;
+import com.kanban.service.api.model.http.response.CreateTicketResponse;
 import com.kanban.service.impl.mapper.TaskMapper;
 import com.kanban.service.impl.mapper.TicketMapper;
 import com.kanban.service.impl.model.Task;

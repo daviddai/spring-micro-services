@@ -1,14 +1,13 @@
 package com.kanban.service.api.controller;
 
 import com.kanban.service.api.model.TicketDTO;
-import com.kanban.service.api.model.http.CreateTicketRequest;
-import com.kanban.service.api.model.http.CreateTicketResponse;
-import com.kanban.service.api.model.http.UpdateTicketStatusRequest;
+import com.kanban.service.api.model.http.request.CreateTicketRequest;
+import com.kanban.service.api.model.http.request.UpdateTicketStatusRequest;
+import com.kanban.service.api.model.http.response.CreateTicketResponse;
+import com.kanban.service.api.model.http.response.GetAllTicketsResponse;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "/ticket")
@@ -20,7 +19,7 @@ public interface TicketController {
 
     @GetMapping
     @RequestMapping(path = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Collection<TicketDTO>> getAll();
+    ResponseEntity<GetAllTicketsResponse> getAll();
 
     @PostMapping
     @RequestMapping(path = "/update", produces = MediaType.APPLICATION_JSON_VALUE)

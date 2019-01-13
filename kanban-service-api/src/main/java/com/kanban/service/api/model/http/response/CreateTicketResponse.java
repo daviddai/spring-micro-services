@@ -1,4 +1,4 @@
-package com.kanban.service.api.model.http;
+package com.kanban.service.api.model.http.response;
 
 import com.kanban.service.api.model.TicketDTO;
 
